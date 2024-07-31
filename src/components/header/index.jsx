@@ -1,9 +1,10 @@
 import styles from './header.module.css'
 import { Link, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 
 export function Header(){
   const navigate = useNavigate();
-  const user = null;
+  const { user } = useSelector(state => state.user)
 
   function handleLogin(){
     navigate("/")
