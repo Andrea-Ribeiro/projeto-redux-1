@@ -2,16 +2,22 @@ import styles from './home.module.css'
 import { Header } from '../../components/header'
 import { Link } from 'react-router-dom'
 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { deleteAddress, fetchUsers } from '../../redux/user/slice'
 
 export function Home() {
-
+  const dispatch = useDispatch();
   const { user } = useSelector(rootReducer => rootReducer.user)
   
   console.log(user)
 
   function handleDeleteAddress(){
+    dispatch(deleteAddress());
     alert("Endereço deletado com sucesso!")
+  }
+
+  function handleFetchUsers(){
+    dispatch(fetchUsers());
   }
 
   return (
@@ -46,6 +52,11 @@ export function Home() {
             </div>
             )}
 
+            <hr />
+            <br/>
+            <h2>Lista de usuários</h2>
+            <button onClick={handleFetchUsers}>Buscar usuários</button>
+            <br/>
           </div>
 
         </main>
